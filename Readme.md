@@ -1,5 +1,5 @@
 # Drone Obstacle Detection 
-TerraWing is a service for obstacle detection and classification on UAV flight paths.  
+This project is a service for obstacle detection and classification on UAV flight paths.  
 Our solution is designed for use in the agricultural sector.  
 
 ## Uniqueness
