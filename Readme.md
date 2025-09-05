@@ -1,98 +1,67 @@
-<img src="./logo.png" alt=""/>
+# Drone Obstacle Detection 
+TerraWing is a service for obstacle detection and classification on UAV flight paths.  
+Our solution is designed for use in the agricultural sector.  
 
+## Uniqueness
+- High system performance  
+- Project already at MVP stage  
+- Use of modern AI-based detection methods  
 
-# TerraWing - БПЛА в АПК  
-TerraWing - сервис для распознавания препятствий на пути движения БПЛА и их классификации. Наше решение предназначено для использования в агропромышленном комплексе.  
+## Future Development
+- [ ] Specialized dataset  
+- [ ] AI plugins deployable on the server to handle different tasks  
+- [ ] Automatic mapping of the drone’s work area  
+- [ ] Collaborative operation of multiple UAVs  
+- [ ] Integration with weather services  
 
-## Уникальность
-- Быстродействие работы системы
-- Проект доведен до стадии MVP
-- Использование 
+# Getting Started  
 
-## Перспективы развития
-- [ ] Специализированный датасет
-- [ ] Плагины ИИ встраиваемые на сервере для возможности работы с разными задачами
-- [ ] Автоматическое составление карты рабочей местности для дрона
-- [ ] Совместная работа нескольких БПЛА
-- [ ] Интеграция с погодными сервисами.
-
-# Начало работы  
-### Установим pyenv для удобного управления версиями python  
-- Windows Chocolatey: `choco install pyenv-win`  
+### Install pyenv for Python version management  
+- Windows (Chocolatey): `choco install pyenv-win`  
 - Linux/macOS: `curl https://pyenv.run | bash`  
-  
-Просмотр доступных версий python в pyenv: `pyenv install --list`
-Устанавливаем python не ниже версии 3.11: `pyenv install 3.11.8`  
-  
-### Устанавливаем пакетный менеджер poetry  
-- Windows Powershell: `(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -`  
-- Linux/macOS: `curl -sSL https://install.python-poetry.org | python3 -`  
-  
-### Виртуальное окружение  
-Если Вы используете `pyenv` выполните следующие команды:  
+
+Check available Python versions with: `pyenv install --list`  
+Install Python 3.11 or higher: `pyenv install 3.11.8`  
+
+### Install poetry (package manager)  
+- Windows PowerShell:  
+  `(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -`  
+- Linux/macOS:  
+  `curl -sSL https://install.python-poetry.org | python3 -`  
+
+### Virtual Environment  
+If you are using `pyenv`, run the following commands:  
 - `poetry config virtualenvs.prefer-active-python true`  
-- `pyenv local <номер версии python, в нашем случае 3.11.8>`  
-  
-Подготовка виртуального окружения для poetry: `poetry use env <номер версии python, в нашем случае 3.11.8>`  
-Входим в виртуальное окружение `poetry shell`  
-Установка зависимостей: `poetry install`
-  
-Копируем шаблон файла настроек:  
+- `pyenv local <python version number, e.g., 3.11.8>`  
+
+Prepare the virtual environment for poetry:  
+`poetry use env <python version number, e.g., 3.11.8>`  
+
+Activate the environment: `poetry shell`  
+Install dependencies: `poetry install`  
+
+Copy the settings template:  
 - Windows: `copy .env.dist .env`  
 - Linux/macOS: `cp .env.dist .env`  
-  
-Редактируем в .env наши настройки...  
-  
-### Запуск сервера  
-Выполняем команду `python app.py`  
-  
-# Dev  
-## Помощь в разработке  
-- Линтер `ruff`   
-  Для запуска использовать следующую команду `poetry run ruff check src`  
-- Форматирование кода `black`   
-  Для запуска используем следующую команду: `poetry run black src`  
-  
-## Тесты сервера  
-В папке `tests` вы можете найти файл `test_video_stream.py` 
-Этот файл дает нам возможность эмитировать дрон, посылая в качестве видеопотока на сервер либо любой файл с видео, либо транслировать свою веб-камеру. 
 
-Для запуска клиента с трансляцией заранее заготовленного видео используйте эту команду:
-`python test_video_stream.py <drone_id> <drone_secret> --video_source <путь>`
+Edit `.env` with your configuration...  
 
-> [!NOTE] 
-> Если вы хотите транслировать веб-камеру, то просто удалите аргумент **`video_source`**
+### Run the Server  
+Run: `python app.py`  
 
-## Обучение модели
-Ссылка на датасет: https://www.kaggle.com/datasets/dimflix/obstacles-in-flight-for-drones \
-По пути `src/neural_network` вы можете найти файл `TrainNeuralNetwork.ipynb`. Как-раз таки он служит для обучения нейронки. 
+# Development  
 
-> [!NOTE] 
-> Датасет должен находиться в папке **`src/data/DATASET`**
+## Contribution Guidelines  
+- **Linter**: `ruff`  
+  Run with: `poetry run ruff check src`  
+- **Code formatter**: `black`  
+  Run with: `poetry run black src`  
 
-> [!WARNING]
-> Если вы используете Pycharm и индексацию файлов, советуем вам добавить папку с датасетом в исключение (excluded). Это можно сделать нажатием правой кнопки мыши по папке, после чего выбрав пункт `Mark Directory as`. Там вам нужно выбрать `excluded`.
+## Server Tests  
+Inside the `tests` folder, you will find `test_video_stream.py`.  
+This script simulates a drone by streaming either a video file or your webcam to the server.  
 
-# Лицензия
-Полный текст лицензии доступен здесь: [Юридический кодекс CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/legalcode).
-## Вы можете свободно использовать:
-- Делиться — копировать и распространять материал на любом носителе или в любом формате
-- Адаптировать — переделывать, преобразовывать и дополнять материал Лицензиар не может лишить вас этих прав, пока вы соблюдаете условия лицензии.
-## На следующих условиях:
-- Указание авторства — Вы должны предоставить соответствующую информацию, ссылку на лицензию и указать, были ли внесены изменения. Вы можете делать это любым разумным способом, но не таким, который предполагает, что лицензиар одобряет вас или ваше использование.
-- Некоммерческий — Вы не имеете права использовать материалы в коммерческих целях.
-- Никаких дополнительных ограничений — Вы не имеете права применять юридические условия или технологические меры, которые юридически ограничивают действия других лиц, разрешенные лицензией.
-
-Это всего лишь краткая выдержка из основных положений лицензии. Пожалуйста, ознакомьтесь с полным юридическим текстом лицензии для полного понимания ее условий.
-
-<h2 align="center"> Star History</h2>
-<div align="center">
-<a href="https://star-history.com/#K1rsN7/TerraWing&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=K1rsN7/TerraWing&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=K1rsN7/TerraWing&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=K1rsN7/SubManage&type=Date" />
- </picture>
-</a>
-</div>
+To stream a pre-recorded video:  
+```bash
+python test_video_stream.py <drone_id> <drone_secret> --video_source <path>
 
